@@ -3,6 +3,8 @@ const http = require('http')
 const express = require('express')
 const app = express()
 
+app.use(express.json())
+
 let alumno = [
     {id: '1', nombre: 'Luis', numero: '987654321'},
     {id: '2',nombre: 'Juan', numero: '987654322'},
@@ -35,6 +37,13 @@ app.delete('/user/:id', (request, response) => {
     notes = alumno.filter(alumno => alumno.id !== id)
   
     response.status(204).end()
+})
+
+app.post('/', (request, response) => {
+    const alumno = request.body
+    console.log(alumno)
+  
+    response.json(alumno)
 })
 
 const PORT = 3001
