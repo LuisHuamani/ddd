@@ -1,0 +1,11 @@
+GET http://localhost:3001/
+
+###
+POST http://localhost:3001/ HTTP/1.1
+content-type: application/json
+
+{
+    "id": "5",
+    "name": "Cesar",
+    "time": "987654326"
+}

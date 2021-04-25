@@ -39,12 +39,33 @@ app.delete('/user/:id', (request, response) => {
     response.status(204).end()
 })
 
-app.post('/', (request, response) => {
-    const alumno = request.body
+app.post('/api/alumnos', (request, response) => {
+
+    if(!request.body.nombre){
+        response.status(400).send({ error: 'name must be unique' })
+        return;
+    }else if(!request.body.numero){
+        response.status(400).send({ error: 'number must be unique' })
+        return;
+    }
+
+    const nombres = alumnos.map((object)=>{return object['nombre']})
+    if(nombres.includes(request.body.nombre)){
+        response.status(400).send({ error: 'Este nombre ya existe' })
+        return;
+    }
+
+    const alumno = {
+        id: Math.round(Math.random()*100000),
+        nombre: req.body.nombre,
+        numero: req.body.numero,
+    };
     console.log(alumno)
-  
+    alumnos.push(alumno);
+    request.send(alumno);
     response.json(alumno)
-})
+});
+
 
 const PORT = 3001
 app.listen(PORT, () => {
