@@ -20,7 +20,7 @@ app.get('/info', (request, response) => {
 })
 
 
-app.get('/info/:id', (request, response) => {
+app.get('/user/:id', (request, response) => {
     const id = request.params.id
     const note = alumno.find(alumno => alumno.id === id)
     if (note) {
