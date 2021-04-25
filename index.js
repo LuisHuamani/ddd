@@ -30,6 +30,13 @@ app.get('/user/:id', (request, response) => {
     }
 })
 
+app.delete('/user/:id', (request, response) => {
+    const id = Number(request.params.id)
+    notes = alumno.filter(alumno => alumno.id !== id)
+  
+    response.status(204).end()
+})
+
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
